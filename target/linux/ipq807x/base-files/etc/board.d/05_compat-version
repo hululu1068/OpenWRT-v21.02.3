@@ -1,0 +1,23 @@
+#
+# Copyright (C) 2022 OpenWrt.org
+#
+
+. /lib/functions.sh
+. /lib/functions/uci-defaults.sh
+
+board_config_update
+
+case "$(board_name)" in
+	redmi,ax6|\
+	xiaomi,ax3600|\
+	xiaomi,ax9000)
+		ucidef_set_compat_version "2.0"
+		;;
+	*)
+		ucidef_set_compat_version "1.1"
+		;;
+esac
+
+board_config_flush
+
+exit 0
